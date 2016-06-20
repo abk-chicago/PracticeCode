@@ -32,5 +32,10 @@ public class Item {
         this.name = name;
     }
 
+    public  String toString()
+    {
+        return ("Name: "+name+"\nDescription: "+desc);
+
+    }
 
 }

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Item> mArrayList = new ArrayList<>();
     private AdapterView.OnItemClickListener mListener;
     private ArrayAdapter<Item> mArrayAdapter;
-    private Intent IntentToGoToList;
+    private Intent mIntentToGoToList;
 
 
 
@@ -47,28 +47,31 @@ public class MainActivity extends AppCompatActivity {
         mArrayList.add(item3);
         mArrayList.add(item4);
 
-//        mListener = new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(MainActivity.this,"Just practicing",Toast.LENGTH_LONG).show();
-//            }
-//        };
+        mListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this,"Just practicing",Toast.LENGTH_LONG).show();
+            }
+        };
 
         mListView.setAdapter(mArrayAdapter);
         mListView.setOnItemClickListener(mListener);
         mArrayAdapter = new ArrayAdapter<Item>(this,R.layout.list_row,mArrayList);
 
         Button goToList = (Button) findViewById(R.id.btn_gotolist);
-        final Intent mIntentToGoToList = new Intent(MainActivity.this, Main2Activity.class);
+        mIntentToGoToList = new Intent(MainActivity.this,Main2Activity.class);
+
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick (View v){
-                Log.i("MAIN", "Click btn");
+                Log.i("MAIN", "Click btn_edit_list");
                 startActivity(mIntentToGoToList);
             }
         };
 
+        goToList.setOnClickListener(listener);
         mListView.setAdapter(mArrayAdapter);
+
     }
 }
